@@ -21,7 +21,7 @@ https://www.zhihu.com/api/v4/members/people/answers?include=data[*].is_normal,ad
 
 json格式
 
-![image-20210331111420437](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210331111420437.png)
+![zhihu_answer_1](\images\zhihu_answer_1.png)
 
 三个变量，people，offset，limit
 
@@ -29,7 +29,7 @@ json格式
 
 requests(api)出现403
 
-![image-20210330192118529](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210330192118529.png)
+![zhihu_answer_2](\images\zhihu_answer_2.png)
 
 好家伙，header改了很多都是403
 
@@ -37,19 +37,19 @@ requests(api)出现403
 
 关键在于这个x-zse-86
 
-![image-20210331111511511](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210331111511511.png)
+![zhihu_answer_3](\images\zhihu_answer_3.png)
 
-![image-20210318162945024](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210318162945024.png)
+![zhihu_answer_4](\images\zhihu_answer_4.png)
 
 y.set('x-zse-86', '2.0_' + j)
 
-![image-20210318163027298](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210318163027298.png)
+![zhihu_answer_5](\images\zhihu_answer_5.png)
 
 b.set('x-zse-86', '2.0_' + E)
 
-![image-20210318163329235](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210318163329235.png)
+![zhihu_answer_6](images\zhihu_answer_6.png)
 
-![image-20210318163419758](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210318163419758.png)
+![zhihu_answer_7](\images\zhihu_answer_7.png)
 
 signature: (0, o.default) ((0, r.default) (p))
 
@@ -57,9 +57,9 @@ signature: (0, o.default) ((0, r.default) (d))
 
 打个断点看看d是啥
 
-![image-20210318164344172](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210318164344172.png)
+![zhihu_answer_8](\images\zhihu_answer_8.png)
 
-![image-20210318164411666](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210318164411666.png)
+![zhihu_answer_9](\images\zhihu_answer_9.png)
 
 d值为
 
@@ -73,11 +73,11 @@ d值为
 
 简单思索了一下，使用md5加密这一长串试试，巧了，正好一样
 
-![image-20210330161212333](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210330161212333.png)
+![zhihu_answer_10](\images\zhihu_answer_10.png)
 
 第一步加密
 
-![image-20210330161224328](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210330161224328.png)
+![zhihu_answer_11](\images\zhihu_answer_11.png)
 
 
 
