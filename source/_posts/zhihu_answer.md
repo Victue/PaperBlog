@@ -21,7 +21,7 @@ https://www.zhihu.com/api/v4/members/people/answers?include=data[*].is_normal,ad
 
 json格式
 
-![zhihu_answer_1](\images\zhihu_answer_1.png)
+![zhihu_answer_1](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_1.png)
 
 三个变量，people，offset，limit
 
@@ -29,7 +29,7 @@ json格式
 
 requests(api)出现403
 
-![zhihu_answer_2](\images\zhihu_answer_2.png)
+![zhihu_answer_2](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_2.png)
 
 好家伙，header改了很多都是403
 
@@ -37,19 +37,19 @@ requests(api)出现403
 
 关键在于这个x-zse-86
 
-![zhihu_answer_3](\images\zhihu_answer_3.png)
+![zhihu_answer_3](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_3.png)
 
-![zhihu_answer_4](\images\zhihu_answer_4.png)
+![zhihu_answer_4](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_4.png)
 
 y.set('x-zse-86', '2.0_' + j)
 
-![zhihu_answer_5](\images\zhihu_answer_5.png)
+![zhihu_answer_5](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_5.png)
 
 b.set('x-zse-86', '2.0_' + E)
 
-![zhihu_answer_6](images\zhihu_answer_6.png)
+![zhihu_answer_6](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_6.png)
 
-![zhihu_answer_7](\images\zhihu_answer_7.png)
+![zhihu_answer_7](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_7.png)
 
 signature: (0, o.default) ((0, r.default) (p))
 
@@ -57,9 +57,9 @@ signature: (0, o.default) ((0, r.default) (d))
 
 打个断点看看d是啥
 
-![zhihu_answer_8](\images\zhihu_answer_8.png)
+![zhihu_answer_8](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_8.png)
 
-![zhihu_answer_9](\images\zhihu_answer_9.png)
+![zhihu_answer_9](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_9.png)
 
 d值为
 
@@ -73,11 +73,11 @@ d值为
 
 简单思索了一下，使用md5加密这一长串试试，巧了，正好一样
 
-![zhihu_answer_10](\images\zhihu_answer_10.png)
+![zhihu_answer_10](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_10.png)
 
 第一步加密
 
-![zhihu_answer_11](\images\zhihu_answer_11.png)
+![zhihu_answer_11](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/zhihu_answer/zhihu_answer_11.png)
 
 
 
