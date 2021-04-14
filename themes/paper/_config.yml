@@ -6,7 +6,6 @@ language: zh
 menu:
   Home: /
   About: /about
-  Friends: /firends
 
 # stylesheets loaded in the <head>
 stylesheets:
