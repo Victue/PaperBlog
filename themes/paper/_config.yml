@@ -6,6 +6,7 @@ language: zh
 menu:
   Home: /
   About: /about
+  Friends: /firends
 
 # stylesheets loaded in the <head>
 stylesheets:
@@ -28,6 +29,7 @@ social:
   知乎: https://www.zhihu.com/people/Victue
   Email: mailto:victue@outlook.com
   关于: /about
+  友链: /friends
   # and more, you can add other link by the same way
 
 # Uncomment to disable sidebar
