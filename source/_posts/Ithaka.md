@@ -1,5 +1,5 @@
 ---
-title: Ithaka
+title: A poem
 author: C.P.Cavafy
 categories: go
 tags: Poems
@@ -14,89 +14,89 @@ A poem for creammi
 
 # Ithaka
 
-​                         **C.P.Cavafy**
+​													*C.P.Cavafy*
 
 
 
 **As you set out for Ithaka**
 
-**hope the voyage is a long one, **
+**hope the voyage is a long one,** 
 
-**full of adventure, full of discovery. **
+**full of adventure, full of discovery.** 
 
-**Laistrygonians and Cyclops, **
+**Laistrygonians and Cyclops,** 
 
-**angry Poseidon—don’t be afraid of them: **
+**angry Poseidon—don’t be afraid of them:** 
 
-**you’ll never find things like that on your way **
+**you’ll never find things like that on your way** 
 
-**as long as you keep your thoughts raised high, **
+**as long as you keep your thoughts raised high,** 
 
-**as long as a rare excitement **
+**as long as a rare excitement** 
 
-**stirs your spirit and your body. **
+**stirs your spirit and your body.** 
 
-**Laistrygonians and Cyclops, **
+**Laistrygonians and Cyclops,** 
 
-**wild Poseidon—you won’t encounter them **
+**wild Poseidon—you won’t encounter them** 
 
-**unless you bring them along inside your soul, **
+**unless you bring them along inside your soul,** 
 
-**unless your soul sets them up in front of you.  **
-
-
-
-**Hope the voyage is a long one. **
-
-**May there be many a summer morning when, **
-
-**with what pleasure, what joy, **
-
-**you come into harbors seen for the first time; **
-
-**may you stop at Phoenician trading stations **
-
-**to buy fine things, **
-
-**mother of pearl and coral, amber and ebony, **
-
-**sensual perfume of every kind— **
-
-**as many sensual perfumes as you can; **
-
-**and may you visit many Egyptian cities **
-
-**to gather stores of knowledge from their scholars.  **
+**unless your soul sets them up in front of you.**  
 
 
 
-**Keep Ithaka always in your mind. **
+**Hope the voyage is a long one.** 
 
-**Arriving there is what you are destined for. **
+**May there be many a summer morning when,** 
 
-**But do not hurry the journey at all. **
+**with what pleasure, what joy,** 
 
-**Better if it lasts for years, **
+**you come into harbors seen for the first time;** 
 
-**so you are old by the time you reach the island, **
+**may you stop at Phoenician trading stations** 
 
-**wealthy with all you have gained on the way, **
+**to buy fine things,** 
 
-**not expecting Ithaka to make you rich.  **
+**mother of pearl and coral, amber and ebony,** 
+
+**sensual perfume of every kind—** 
+
+**as many sensual perfumes as you can;** 
+
+**and may you visit many Egyptian cities** 
+
+**to gather stores of knowledge from their scholars.**  
 
 
 
-**Ithaka gave you the marvelous journey. **
+**Keep Ithaka always in your mind.** 
 
-**Without her you would not have set out. **
+**Arriving there is what you are destined for.** 
 
-**She has nothing left to give you now.  **
+**But do not hurry the journey at all.** 
+
+**Better if it lasts for years,** 
+
+**so you are old by the time you reach the island,** 
+
+**wealthy with all you have gained on the way,** 
+
+**not expecting Ithaka to make you rich.**  
 
 
 
-**And if you find her poor, Ithaka won’t have fooled you. **
+**Ithaka gave you the marvelous journey.** 
 
-**Wise as you will have become, so full of experience, **
+**Without her you would not have set out.** 
+
+**She has nothing left to give you now.**  
+
+
+
+**And if you find her poor, Ithaka won’t have fooled you.** 
+
+**Wise as you will have become, so full of experience,** 
 
 **you will have understood by then what these Ithakas mean.** 
 
@@ -106,6 +106,6 @@ A poem for creammi
 
 
 
-**Translated by Edmund Keeley/Philip Sherrard **
+Translated by Edmund Keeley/Philip Sherrard
 
-**(C.P. Cavafy, Collected Poems. Translated by Edmund Keeley and Philip Sherrard. Edited by George Savidis. Revised Edition. Princeton University Press, 1992     P.36- P.37 )** 
+(C.P. Cavafy, Collected Poems. Translated by Edmund Keeley and Philip Sherrard. Edited by George Savidis. Revised Edition. Princeton University Press, 1992     P.36- P.37 ) 
