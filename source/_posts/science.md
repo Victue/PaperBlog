@@ -1,9 +1,9 @@
 ---
 title: 科学的价值
-author: 理查德·费曼
-categories: 科学
-tags: 科学
-date: 2021-02-24
+author: Richard Feynman
+categories: science
+tags: science
+date: 2021-06-06
 ---
 
 ## 科学的价值
