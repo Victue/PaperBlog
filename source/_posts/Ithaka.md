@@ -3,7 +3,7 @@ title: Ithaka
 author: C.P.Cavafy
 categories: go
 tags: Poems
-date: 2021-03-30
+date: 2021-06-06
 ---
 
 
