@@ -1,3 +1,17 @@
+---
+title: MOSS, JPlag, SIM comparison
+author: Li Pie
+categories: notes
+tags: 
+- MOSS
+- JPlag
+- SIM
+- Code Clone
+date: 2021-07-10
+---
+
+
+
 ### Moss
 
 http://theory.stanford.edu/~aiken/moss/
