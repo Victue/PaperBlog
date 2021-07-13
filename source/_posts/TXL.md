@@ -18,7 +18,7 @@ date: 2021-07-10
 
 - 变换后的分析树由解析器中序遍历输出文本，将原始输入文本解析为结构树
 
-![image-20210707183112488](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210707183112488.png)
+![image-20210707183112488](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/NiCad/nicad_1.png)
 
 
 
@@ -26,7 +26,7 @@ date: 2021-07-10
 
 通过固定的**语法规则**和**转换规则**将原语言转换为TXL语言
 
-![image-20210707183556107](C:\Users\hasee\AppData\Roaming\Typora\typora-user-images\image-20210707183556107.png)
+![image-20210707183556107](https://cdn.jsdelivr.net/gh/Victue/PaperBlog@main/source/images/NiCad/nicad_2.png)
 
 
 
