@@ -64,7 +64,7 @@ date: 2021-07-12
 >
 > NVD
 >
-> NPM警报
+> NPM Public Advisories
 >
 > Sonatype OSS Index
 >
@@ -802,4 +802,102 @@ Dependency-Track包含一个内部限制器，用于在执行漏洞分析时防�
   - 发现漏洞时快速响应安全事件
 
 通过不断更新组件，团队可以更好地在已知影响组件的漏洞时进行快速响应。
+
+
+
+## 许可证评估
+
+作为Dependency-Track策略引擎的一部分，可以根据一个或多个策略评估许可证。
+
+
+
+## 组件标识
+
+作为Dependency-Track策略引擎的一部分，标识包括：
+
+| 标识        | 描述                             |
+| ----------- | -------------------------------- |
+| Coordinates | 匹配包含指定组、名称和版本的组件 |
+| Package URL | 匹配指定Package URL的组件        |
+| CPE         | 匹配指定CPE的组件                |
+| SWID TagID  | 匹配指定SWID TagID的组件         |
+| Hash        | 匹配指定Hash的组件               |
+
+- Hash标识自动检测所有已支持的hash算法：
+  - MD5
+  - SHA-1
+  - SHA-256
+  - SHA-384
+  - SHA-512
+  - SHA3-256
+  - SHA3-384
+  - SHA3-512
+  - BLAKE2b-256
+  - BLAKE2b-384
+  - BLAKE2b-512
+  - BLAKE3
+
+### 使用
+
+基于标识评估组件的通常使用于：
+
+- 策略包含预定义的允许或禁止的组件列表
+
+- 识别伪造或已知的恶意组件
+
+
+
+## 完整性验证
+
+Work in progress
+
+
+
+# 数据源
+
+## NVD
+
+The National Vulnerability Database(NVD)是最大的公开漏洞信息源。由美国国家标准与技术研究所(NIST)内的一个团队维护，并以MITRE和其他人的工作为基础。NVD中的漏洞称为Common Vulnerabilities and Exposures(CVE)。从20世纪90年代到现在，NVD记录了超过100000个CVEs。
+
+Dependency-Track严重依赖于NVD提供的数据，并包含一个完整的镜像，该镜像每天保持最新，或者在Dependency-Track实例重新启动时加载最新数据。
+
+Credit提供数据来源的部分信息，以及CVE链接。
+
+---
+
+### NVD镜像
+
+Dependency-Track不仅是NVD的使用者，而且还提供NVD镜像功能。此功能内置于Dependency-Track中，不需要进一步配置，镜像每天自动更新。
+
+> NVD镜像URL: http://hostname/mirror/nvd
+
+目录列表被禁止提供，但是索引由NVD提供的内容组成。这包括：
+
+**JSON 1.1 feed**
+
+- nvdcve-1.1-modified.json.gz
+- nvdcve-1.1-%d.json.gz
+- nvdcve-1.1-%d.meta
+
+（其中%d是从2002年开始的四位数年份）
+
+
+
+## NPM Public Advisories
+
+NPM public advisories是JavaScript和Node.js漏洞信息的集中来源，NVD中可能记录也可能没有记录。利用Node.js的项目将受益于NPM Audit数据源，因为它提供了对特定于生态漏洞的可见性。
+
+Dependency-Track与NPM集成，使用其public advisory API。Dependency Track能够创建所有NPM advisory数据的镜像。镜像每天都保持最新，或者在重新启动Dependency-Track实例时加载最新数据。
+
+Credit提供数据来源的部分信息，以及NPM  advisories链接。
+
+
+
+
+
+## Sonatype OSS Index
+
+Sonatype OSS Index为具有有效的Package URLs的组件提供透明且高度准确的结果。大多数漏洞直接映射到国家漏洞数据库(NVD)中的CVE，但是OSS Index中确实包含许多NVD中不存在的漏洞。
+
+Dependency Track与OSS Index集成，使用其public API。Dependency-Track没有镜像OSS Index，但它会在“as-identified”的基础上识别OSS Index中的漏洞信息。
 
