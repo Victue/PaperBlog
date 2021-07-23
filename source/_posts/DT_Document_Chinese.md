@@ -114,6 +114,8 @@ date: 2021-07-12
 
 ### 后端
 
+
+
 默认情况下，配置文件`application.properties`在WAR的classpath中。可配置众多性能调整参数，最关键是外部数据源、目录服务(LDAP)和代理设置。
 
 对于容器化部署，配置文件中定义的属性也可以指定为环境变量。所有环境变量都是大写的，句点（.）替换为下划线（_）。有关使用环境变量的配置示例，请参阅[Docker说明](https://docs.dependencytrack.org/getting-started/deploy-docker/)。
@@ -128,114 +130,107 @@ date: 2021-07-12
 -Dalpine.application.properties=~/.dependency-track/application.properties
 ```
 
-### 默认配置
+#### 默认配置
 
-```
+```properties
 ############################ Alpine Configuration ###########################
 
 # Required
-# 定义the event subsystem使用的线程数量
-# 由the Event subsystem异步执行. This
-# value should be large enough to handle most production situations without
-# introducing much delay, yet small  enough not to pose additional load on an
-# already resource-constrained server.
-# A value of 0 will instruct Alpine to allocate 1 thread per CPU core. This
-# can further be tweaked using the alpine.worker.thread.multiplier property.
-# Default value is 0.
+# 设定the event subsystem使用的线程数量
+# 由the event subsystem异步执行
+# 当该值较大时，可以处理大多数使用场景并且不会产生大量延迟.
+# 当该值较小时，不会对服务器造成额外的负载
+# 值为0时，将指示Alpine为每个CPU核心分配1个线程
+# 可以使用alpine.worker.thread.multiplier属性进行进一步调整.
+# 默认为0
 alpine.worker.threads=0
 
 # Required
-# Defines a multiplier that is used to calculate the number of threads used
-# by the event subsystem. This property is only used when alpine.worker.threads
-# is set to 0. A machine with 4 cores and a multiplier of 4, will use (at most)
-# 16 worker threads. Default value is 4.
+# 设置一个乘数，用于计算the event subsystem使用的线程数
+# 此属性仅在alpine.worker.threads设置为0时使用
+# 具有4个内核且乘数为4的计算机将使用（最多）16个工作线程
+# 默认为4
 alpine.worker.thread.multiplier=4
 
 # Required
-# Defines the path to the data directory. This directory will hold logs, keys,
-# and any database or index files along with application-specific files or 
-# directories.
+# 设定数据目录的路径。
+# 此目录将保存日志、密钥和任何数据库或索引文件以及特定于应用程序的文件或目录
 alpine.data.directory=~/.dependency-track
 
 # Required
-# Defines the interval (in seconds) to log general heath information. If value
-# equals 0, watchdog logging will be disabled.
+# 日志记录间隔时间(秒)
+# 值为0时，不启用日志记录
 alpine.watchdog.logging.interval=0
 
 # Required
-# Defines the database mode of operation. Valid choices are:
-# 'server', 'embedded', and 'external'.
-# In server mode, the database will listen for connections from remote hosts.
-# In embedded mode, the system will be more secure and slightly faster. 
-# External mode should be used when utilizing an external database server 
-# (i.e. mysql, postgresql, etc).
+# 设定数据库操作模式。有效的选择是:
+# 'server'， 'embedded'和'external'。
+# server模式下，数据库将监听来自远程主机的连接。
+# embedded模式下，系统会更安全，速度会较快。
+# external模式下，使用外部数据库服务器
+# (例如mysql, postgresql等)。
 alpine.database.mode=embedded
 
 # Optional
-# Defines the TCP port to use when the database.mode is set to 'server'.
+# 'server'模式下，指定TCP端口
 alpine.database.port=9092
 
 # Required
-# Specifies the JDBC URL to use when connecting to the database.
+# 指定连接到数据库时要使用的JDBC URL
 alpine.database.url=jdbc:h2:~/.dependency-track/db
 
 # Required
-# Specifies the JDBC driver class to use.
+# 指定要使用的JDBC driver class
 alpine.database.driver=org.h2.Driver
 
 # Optional
-# Specifies the username to use when authenticating to the database.
+# 指定对数据库进行身份验证时要使用的用户名
 alpine.database.username=sa
 
 # Optional
-# Specifies the password to use when authenticating to the database.
+# 指定对数据库进行身份验证时要使用的密码
 # alpine.database.password=
 
 # Optional
-# Specifies if the database connection pool is enabled.
+# 是否启用数据库连接池
 alpine.database.pool.enabled=true
 
 # Optional
-# This property controls the maximum size that the pool is allowed to reach,
-# including both idle and in-use connections.
+# 设定数据库连接池最大连接数
+# 包括空闲和正在使用的连接数
 alpine.database.pool.max.size=20
 
 # Optional
-# This property controls the maximum amount of time that a connection is
-# allowed to sit idle in the pool.
+# 可在连接池中的最长空闲时间
 alpine.database.pool.idle.timeout=600000
 
 # Optional
-# This property controls the maximum lifetime of a connection in the pool.
-# An in-use connection will never be retired, only when it is closed will
-# it then be removed.
+# 连接池中连接的最长生命周期
+# 正在使用的连接将不会被删除，只有关闭的连接才会被移除
 alpine.database.pool.max.lifetime=600000
 
 # Optional
-# When authentication is enforced, API keys are required for automation, and
-# the user interface will prevent anonymous access by prompting for login
-# credentials.
+# 设定强制验证，需要API密钥来实现自动化
+# 用户界面将通过提示输入登录凭据来防止匿名访问
 alpine.enforce.authentication=true
 
 # Optional
-# When authorization is enforced, team membership for both API keys and user
-# accounts are restricted to what the team itself has access to. To enforce 
-# authorization, the enforce.authentication property (above) must be true.
+# 设定强制授权，API密钥和用户帐户被限制为团队有权访问
+# 若强制授权，alpine.enforce.authentication必须为true
 alpine.enforce.authorization=true
 
 # Required
-# Specifies the number of bcrypt rounds to use when hashing a users password.
-# The higher the number the more secure the password, at the expense of
-# hardware resources and additional time to generate the hash.
+# 设定对用户密码进行hash时要进行的bcrypt轮数
+# 轮数越多，密码越安全，但会花费更多时间和资源
 alpine.bcrypt.rounds=14
 
 # Required
-# Defines if LDAP will be used for user authentication. If enabled,
-# alpine.ldap.* properties should be set accordingly.
+# 设定LDAP是否用于身份验证
+# 如果为true，alpine.ldap.* 也应该进行相应设置
 alpine.ldap.enabled=false
 
 # Optional
-# Specifies the LDAP server URL
+# 设定LDAP服务URL
 # Example (Microsoft Active Directory):
 #    alpine.ldap.server.url=ldap://ldap.example.com:3268
 #    alpine.ldap.server.url=ldaps://ldap.example.com:3269
@@ -245,32 +240,29 @@ alpine.ldap.enabled=false
 alpine.ldap.server.url=ldap://ldap.example.com:389
 
 # Optional
-# Specifies the base DN that all queries should search from
+# 设定base DN，所有查询都从中搜索
 alpine.ldap.basedn=dc=example,dc=com
 
 # Optional
-# Specifies the LDAP security authentication level to use. Its value is one of
-# the following strings: "none", "simple", "strong". If this property is empty
-# or unspecified, the behaviour is determined by the service provider.
+# 设定LDAP安全验证级别，"none", "simple", "strong" 
+# 如果为空或未指定，则由服务提供者指定
 alpine.ldap.security.auth=simple
 
 # Optional
-# If anonymous access is not permitted, specify a username with limited access
-# to the directory, just enough to perform searches. This should be the fully
-# qualified DN of the user.
+# 如果不允许匿名访问，请设置对目录具有有限访问权限的用户名，仅够执行搜索
+# This should be the fully qualified DN of the user.
 alpine.ldap.bind.username=
 
 # Optional
-# If anonymous access is not permitted, specify a password for the username
-# used to bind.
+# 设置密码
 alpine.ldap.bind.password=
 
 # Optional
 # Specifies if the username entered during login needs to be formatted prior
-# to asserting credentials against the directory. For Active Directory, the
-# userPrincipal attribute typically ends with the domain, whereas the
-# samAccountName attribute and other directory server implementations do not.
-# The %s variable will be substitued with the username asserted during login.
+# to asserting credentials against the directory. 
+# 对于Active Directory, userPrincipal通常以domain结尾，
+# 而samAccountName和其他目录服务器则并非如此。
+# %s变量将替换为登录时声明的用户名
 # Example (Microsoft Active Directory):
 #    alpine.ldap.auth.username.format=%s@example.com
 # Example (ApacheDS, Fedora 389 Directory, NetIQ/Novell eDirectory, etc):
@@ -278,7 +270,7 @@ alpine.ldap.bind.password=
 alpine.ldap.auth.username.format=%s@example.com
 
 # Optional
-# Specifies the Attribute that identifies a users ID
+# 设定标识用户ID的属性
 # Example (Microsoft Active Directory):
 #    alpine.ldap.attribute.name=userPrincipalName
 # Example (ApacheDS, Fedora 389 Directory, NetIQ/Novell eDirectory, etc):
@@ -286,12 +278,11 @@ alpine.ldap.auth.username.format=%s@example.com
 alpine.ldap.attribute.name=userPrincipalName
 
 # Optional
-# Specifies the LDAP attribute used to store a users email address
+# 用于存储用户电子邮件地址的LDAP属性
 alpine.ldap.attribute.mail=mail
 
 # Optional
-# Specifies the LDAP search filter used to retrieve all groups from the
-# directory.
+# 设定用于从目录检索所有组的LDAP搜索过滤器。
 # Example (Microsoft Active Directory):
 #    alpine.ldap.groups.filter=(&(objectClass=group)(objectCategory=Group))
 # Example (ApacheDS, Fedora 389 Directory, NetIQ/Novell eDirectory, etc):
@@ -299,9 +290,8 @@ alpine.ldap.attribute.mail=mail
 alpine.ldap.groups.filter=(&(objectClass=group)(objectCategory=Group))
 
 # Optional
-# Specifies the LDAP search filter to use to query a user and retrieve a list
-# of groups the user is a member of. The {USER_DN} variable will be substituted
-# with the actual value of the users DN at runtime.
+# 设定用于查询用户和检索用户所属组列表的LDAP搜索过滤器
+# {USER_DN}变量将在运行时替换为users DN的实际值
 # Example (Microsoft Active Directory):
 #    alpine.ldap.user.groups.filter=(&(objectClass=group)(objectCategory=Group)(member={USER_DN}))
 # Example (Microsoft Active Directory - with nested group support):
@@ -349,7 +339,8 @@ alpine.ldap.user.provisioning=false
 alpine.ldap.team.synchronization=false
 
 # Optional
-# HTTP proxy. If the address is set, then the port must be set too.
+# HTTP proxy
+# 如果设置了address，那么port也必须设置。
 # alpine.http.proxy.address=proxy.example.com
 # alpine.http.proxy.port=8888
 # alpine.http.proxy.username=
@@ -357,11 +348,10 @@ alpine.ldap.team.synchronization=false
 # alpine.no.proxy=localhost,127.0.0.1
 
 # Optional
-# Cross-Origin Resource Sharing (CORS) headers to include in REST responses.
-# If 'alpine.cors.enabled' is true, CORS headers will be sent, if false, no
-# CORS headers will be sent.
-# See Also: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-# The following are default values
+# 包含在REST响应中的跨源资源共享(CORS)头。
+# 如果'alpine.cors.enabled' 为true, 将发送CORS头，false则不发送
+# 请参阅: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+# 以下为默认值
 #alpine.cors.enabled=true
 #alpine.cors.allow.origin=*
 #alpine.cors.allow.methods=GET, POST, PUT, DELETE, OPTIONS
@@ -371,8 +361,8 @@ alpine.ldap.team.synchronization=false
 #alpine.cors.max.age=3600
 
 # Required
-# Defines if OpenID Connect will be used for user authentication.
-# If enabled, alpine.oidc.* properties should be set accordingly.
+# 是否将OpenID Connect用于用户身份验证
+# 如果启用，则应相应地设置alpine.oidc.*
 alpine.oidc.enabled=false
 
 # Optional
@@ -418,6 +408,69 @@ alpine.oidc.team.synchronization=false
 alpine.oidc.teams.claim=groups
 ```
 
+#### 代理配置
+
+代理支持以下两种方式进行配置，使用`application.properties`中定义的代理设置或通过环境变量。默认情况下，系统将尝试读取 `https_proxy`，`http_proxy` 和 `no_proxy`环境变量。如果他们被设置，Dependency-Track将自动使用。
+
+ `no_proxy`指定的URLs将会从代理中被排除。可以是以逗号分隔的主机名、域名或两者的混合列表。如果为某个URL指定了端口号，则只有具有该端口号的请求才会被排除在代理之外。不能将no_proxy设置为单个星号(“*”)以匹配所有主机。
+
+支持需要BASIC、DIGEST和NTLM验证的代理。
+
+#### 日志记录等级
+
+可以通过在启动时设置`dependencyTrack.Logging.level`系统属性来指定日志记录等级(INFO、WARN、ERROR、DEBUG、TRACE)。例如，以下命令将启动带有调试日志记录的Dependency-Track (embedded) ：
+
+```
+java -Xmx4G -DdependencyTrack.logging.level=DEBUG -jar dependency-track-embedded.war
+```
+
+对于Docker部署，只需将`LOGGING_LEVEL`环境变量设置为INFO、WARN、ERROR、DEBUG或TRACE。
+
+
+
+### 前端
+
+前端使用`config.json`文件，该文件通过 AJAX 动态请求和评估。文件位于 `<BASE_URL>/static/config.json`。
+
+**默认配置**
+
+```json
+{
+    // Required
+    // URL of the Dependency-Track backend
+    "API_BASE_URL": "",
+    // Optional
+    // Defines the issuer URL to be used for OpenID Connect.
+    // See alpine.oidc.issuer property of the backend.
+    "OIDC_ISSUER": "",
+    // Optional
+    // Defines the client ID for OpenID Connect.
+    "OIDC_CLIENT_ID": "",
+    // Optional
+    // Defines the scopes to request for OpenID Connect.
+    // See also: https://openid.net/specs/openid-connect-basic-1_0.html#Scopes
+    "OIDC_SCOPE": "openid profile email",
+    // Optional
+    // Specifies the OpenID Connect flow to use.
+    // Values other than "implicit" will result in the Code+PKCE flow to be used.
+    // Usage of the implicit flow is strongly discouraged, but may be necessary when
+    // the IdP of choice does not support the Code+PKCE flow.
+    // See also:
+    //   - https://oauth.net/2/grant-types/implicit/
+    //   - https://oauth.net/2/pkce/
+    "OIDC_FLOW": "",
+}
+```
+
+对于容器化部署，这些设置可以通过以下任一方式覆盖:
+
+- 将自定义的`config.json`挂载到容器中`/app/static/config.json`
+- 将其作为环境变量提供
+
+环境变量的名称与`config.json`中的对应名称相同。
+
+挂载的`config.json`优先于环境变量。如果两者都被设定，则环境变量将被忽略。
+
 
 
 ## 数据库支持
@@ -436,7 +489,7 @@ alpine.oidc.teams.claim=groups
 
 #### Microsoft SQL Server Example
 
-```
+```properties
 alpine.database.mode=external
 alpine.database.url=jdbc:sqlserver://localhost:1433;databaseName=dtrack
 alpine.database.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -446,7 +499,7 @@ alpine.database.password=password
 
 #### MySQL Example
 
-```
+```properties
 alpine.database.mode=external
 alpine.database.url=jdbc:mysql://localhost:3306/dtrack?autoReconnect=true&useSSL=false
 alpine.database.driver=com.mysql.jdbc.Driver
@@ -458,7 +511,7 @@ alpine.database.password=password
 
 有多种方式改变MySQL配置文件，推荐使用以下方式(修改my.ini)：
 
-```
+```properties
 [mysqld] 
 sql_mode="ANSI_QUOTES,STRICT_TRANS_TABLES,ONLY_FULL_GROUP_BY,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
 ```
@@ -467,7 +520,7 @@ sql_mode="ANSI_QUOTES,STRICT_TRANS_TABLES,ONLY_FULL_GROUP_BY,ERROR_FOR_DIVISION_
 
 #### PostgreSQL Example
 
-```
+```properties
 alpine.database.mode=external
 alpine.database.url=jdbc:postgresql://localhost:5432/dtrack
 alpine.database.driver=org.postgresql.Driver
@@ -900,4 +953,94 @@ Credit提供数据来源的部分信息，以及NPM  advisories链接。
 Sonatype OSS Index为具有有效的Package URLs的组件提供透明且高度准确的结果。大多数漏洞直接映射到国家漏洞数据库(NVD)中的CVE，但是OSS Index中确实包含许多NVD中不存在的漏洞。
 
 Dependency Track与OSS Index集成，使用其public API。Dependency-Track没有镜像OSS Index，但它会在“as-identified”的基础上识别OSS Index中的漏洞信息。
+
+> 从Dependency Track  v4.0开始，OSS Index默认启用，不需要帐户。对于以前的版本，OSS Index在默认情况下是禁用的，并且需要一个帐户。要启用OSS Index，请注册一个免费帐户，并在administrative的“Analyzers”设置中输入帐户详细信息。
+
+
+
+## VulnDB
+
+
+
+## Datasource Routing
+
+
+
+## Repositories
+
+
+
+## Internal Components
+
+
+
+## 私有漏洞库
+
+
+
+# 报告结果
+
+
+
+## 审计
+
+
+
+## 状态
+
+
+
+## 抑制
+
+
+
+# 集成
+
+## Ecosystem Overview
+
+## File Formats
+
+## Fortify ssc
+
+## Code Dx
+
+## Kenna Security
+
+## DefectDojo
+
+## Notifications
+
+## REST API
+
+## ThreadFix
+
+## SVG Badges
+
+## Community Integrations
+
+
+
+# 最佳实践
+
+
+
+
+
+# 常见问题
+
+
+
+
+
+# 专业术语
+
+### API Key
+
+一串长的随机生成的数字，用于身份验证。所有REST APIs都使用API密钥进行身份验证。API密钥按团队分配。一个团队可能分配了0个或多个API Key。
+
+---
+
+### Auditing
+
+
 
