@@ -976,7 +976,23 @@ Dependency Track与OSS Index集成，使用其public API。Dependency-Track没�
 
 ## 私有漏洞库
 
+> 此功能在Dependency-Track v3.x中是实验性的，v4.x中还不可用。
 
+Dependency-Track能够维护自己的内部管理漏洞存储库。私有存储库的行为与其他漏洞信息源（如NVD）相同。
+
+![add vulnerability](https://docs.dependencytrack.org/images/screenshots/vulnerability-add.png)
+
+私有漏洞库有三个主要用例。
+
+- 希望跟踪内部开发的组件中漏洞的组织，这些组件在组织中的各种软件项目之间共享。 
+- 执行安全研究的组织需要在选择性地披露之前记录所述研究。 
+- 使用非托管数据源来识别漏洞的组织。这包括： 
+  - 更改日志
+  - 提交日志
+  - 问题跟踪程序
+  - 社交媒体信息
+
+私有漏洞存储库中跟踪漏洞的来源为“INTERNAL”。与系统中的其他漏洞一样，需要一个惟一的`VulnID`来帮助惟一地标识每个漏洞。建议组织遵循相应规则来帮助识别源。例如，NVD中的漏洞都以“CVE-”开头。同样，跟踪自身漏洞的组织可能会选择使用“ACME-”或“INT-”之类的标记，或者根据漏洞的类型使用多个限定符。唯一的要求是VulnID对于INTERNAL是唯一的。
 
 # 报告结果
 
@@ -1012,6 +1028,20 @@ Dependency Track与OSS Index集成，使用其public API。Dependency-Track没�
 
 ## REST API
 
+Dependency-Track is built using a *thin server architecture* and an *API-first design*。API是平台的核心。每个API都通过Swagger 2.0完整记录。
+
+> http://{hostname}:{port}/api/swagger.json
+
+Swagger UI控制台(平台不包括)可用于可视化和探索各种可能性。Chrome和FireFox扩展可以用来快速使用Swagger UI控制台。
+
+![Swagger UI Console](https://docs.dependencytrack.org/images/screenshots/swagger-ui-console.png)
+
+在使用REST APIs之前，必须生成API密钥。默认情况下，创建一个team还将创建相应的API密钥。一个team可能有多个密钥。
+
+![Teams - API Key](https://docs.dependencytrack.org/images/screenshots/teams.png)
+
+
+
 ## ThreadFix
 
 ## SVG Badges
@@ -1042,5 +1072,27 @@ Dependency Track与OSS Index集成，使用其public API。Dependency-Track没�
 
 ### Auditing
 
+评估调查结果的过程，以确定调查结果的准确性及其对组成部分和项目的影响。审计处理操作创建一个审计跟踪，获取跟踪每一个被发现的行为状态。
 
+---
+
+### Bill of Materials (BOM)
+
+物料清单（BOM）定义并描述了项目软件中使用的内容。在软件供应链中，这是指与软件捆绑在一起的所有组件的内容，包括作者、发布者、名称、版本、许可证和版权。依赖项跟踪支持CycloneDX格式。特定的软件组件的物料清单通常称为SBOM。
+
+---
+
+### Component
+
+将component组件定义为独立实体。组件可以是开源组件、第三方库、第一方库、操作系统或硬件设备。
+
+---
+
+### CPE
+
+Common Platform Enumeration (CPE) 是信息技术系统、软件和软件包的结构化命名方案。基于统一资源标识符（URI）的通用语法，CPE通常包括供应商、产品名称和版本。
+
+---
+
+### CVE
 
