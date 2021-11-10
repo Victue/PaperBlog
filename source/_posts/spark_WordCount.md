@@ -1,5 +1,5 @@
 ---
-title: Spark RDD 10种方式 WordCount
+title: Spark RDD 11种方式 WordCount
 author: Li Pie
 categories: big data
 tags:
@@ -113,4 +113,87 @@ val wordCount = word.reduce(
     x
   }
 )
+```
+
+### 11.Accumulator
+该方式较为复杂, 重写了AccumulatorV2
+```scala
+val rdd = sc.makeRDD(
+      List(
+        "scala",
+        "scala",
+        "scala",
+        "scala",
+        "scala",
+        "spark",
+        "spark",
+        "spark",
+      )
+    )
+
+    // TODO 创建累加器
+    val acc = new WordCountAccumulator()
+
+    // TODO 向Spark注册
+    sc.register(acc, "WordCount")
+
+    rdd.foreach(
+      word => {
+        // TODO 将单词放入累加器中
+        acc.add(word)
+      }
+    )
+
+    // TODO 获取累加器的结果
+    println(acc.value)
+
+
+    sc.stop()
+  }
+
+  // 自定义数据累加器
+  // 1.继承AccumulatorV2
+  // 2.定义泛型
+  //    IN: String
+  //    OUT: Map[K, V]
+  // 3.重写方法(3+3)
+  class WordCountAccumulator extends AccumulatorV2[String, mutable.Map[String, Int]] {
+
+    private val wcMap = mutable.Map[String, Int]()
+
+    // 判断累加器是否为初始状态
+    // TODO 3.true
+    override def isZero: Boolean = {
+      wcMap.isEmpty
+    }
+
+    // TODO 1.
+    override def copy(): AccumulatorV2[String, mutable.Map[String, Int]] = {
+      new WordCountAccumulator()
+    }
+
+    // 重置累加器
+    // TODO 2.
+    override def reset(): Unit = {
+      wcMap.clear()
+    }
+
+    // 从外部向累加器中添加数据
+    override def add(word: String): Unit = {
+      val oldCnt = wcMap.getOrElse(word, 0)
+      wcMap.update(word, oldCnt + 1)
+    }
+
+    override def merge(other: AccumulatorV2[String, mutable.Map[String, Int]]): Unit = {
+      other.value.foreach {
+        case (word, cnt) => {
+          val oldCnt = wcMap.getOrElse(word, 0)
+          wcMap.update(word, oldCnt + cnt)
+        }
+      }
+    }
+
+    // 向结果返回到外部
+    override def value: mutable.Map[String, Int] = wcMap
+  }
 ```
