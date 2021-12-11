@@ -1,5 +1,18 @@
-## Ways of Thinking
+---
+title: Ways of Thinking
+author: Richard Feynman
+categories: go
+tags: Feynman
+date: 2021-12-11
+---
+
+
+
+# Ways of Thinking
+
 **Feynman fun to imagine**
+
+
 
 When I'm actually doing my own things and working in a high, deep and esoteric stuff that I worry about.
 
